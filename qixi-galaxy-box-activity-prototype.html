@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>七夕银河宝箱活动配置原型</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --panel: #fff;
+      --line: #e5e7eb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --brand: #1890ff;
+      --soft: #eef6ff;
+      --danger: #f05a3c;
+      --pink: #e86fb4;
+      --purple: #7c4dff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 208px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #26384c;
+      color: #d8e1ec;
+      padding: 18px 0;
+    }
+
+    .logo {
+      padding: 0 22px 18px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .nav-title {
+      padding: 14px 22px 8px;
+      color: #9fb2c8;
+      font-size: 12px;
+    }
+
+    .nav-item {
+      padding: 12px 22px;
+      color: #d8e1ec;
+    }
+
+    .nav-item.active {
+      background: #1d2c3d;
+      color: #58b7ff;
+      border-left: 3px solid #58b7ff;
+      padding-left: 19px;
+    }
+
+    .main {
+      min-width: 0;
+      padding: 22px;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 650;
+    }
+
+    .summary {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 22px;
+      padding: 16px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .required::before {
+      content: "* ";
+      color: var(--danger);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 36px;
+      border: 1px solid #d8dee8;
+      border-radius: 4px;
+      background: #fff;
+      color: var(--text);
+      padding: 8px 10px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 74px;
+      resize: vertical;
+    }
+
+    .inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .inline input[type="number"] {
+      max-width: 160px;
+    }
+
+    .switches {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .switches label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .switches input {
+      width: auto;
+      min-height: auto;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      padding: 0 16px 16px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #f5f6f8;
+      color: var(--muted);
+      font-weight: 650;
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+
+    .num { text-align: right; }
+    .table-input, .table-select { min-height: 34px; padding: 6px 8px; }
+    .table-input.num { text-align: right; }
+
+    .btn {
+      border: 1px solid #cfd9e5;
+      background: #fff;
+      color: var(--text);
+      border-radius: 4px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn.primary {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+    }
+
+    .btn.soft {
+      background: var(--soft);
+      border-color: #cfe5ff;
+      color: #1b78c7;
+    }
+
+    .btn.danger {
+      color: var(--danger);
+      border-color: #f5b7a8;
+      background: #fff6f3;
+      padding: 6px 10px;
+    }
+
+    .preview {
+      position: sticky;
+      top: 16px;
+    }
+
+    .preview img {
+      display: block;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #000;
+    }
+
+    .actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 1180px) {
+      .layout { grid-template-columns: 1fr; }
+      .preview { position: static; }
+    }
+
+    @media (max-width: 760px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 12px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field { grid-template-columns: 1fr; }
+      label { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">运营管理</div>
+      <div class="nav-title">营销管理</div>
+      <div class="nav-item">活动列表</div>
+      <div class="nav-item active">添加活动</div>
+      <div class="nav-title">会员运营</div>
+      <div class="nav-item">会员标签</div>
+      <div class="nav-item">消息模板</div>
+      <div class="nav-title">数据中心</div>
+      <div class="nav-item">活动报表</div>
+    </aside>
+
+    <main class="main">
+      <div class="page-head">
+        <h1>添加活动 - 七夕银河宝箱</h1>
+        <div class="summary">
+          <span class="pill">活动类型：8月七夕银河宝箱</span>
+          <span class="pill">7天签到</span>
+          <span class="pill">浪漫值系统</span>
+          <span class="pill">神秘大奖开奖动画</span>
+        </div>
+      </div>
+
+      <div class="layout">
+        <div>
+          <section class="section">
+            <div class="section-head">
+              <h2>基础设置</h2>
+              <span class="note">新增活动类型，替换夏日冰爽神秘大奖</span>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label class="required" for="activity-id">活动ID</label>
+                <input id="activity-id" value="QIXI202608">
+              </div>
+              <div class="field">
+                <label class="required" for="activity-type">活动类型</label>
+                <select id="activity-type">
+                  <option selected>8月七夕银河宝箱</option>
+                  <option>现金池抽奖</option>
+                  <option>充值活动</option>
+                  <option>签到活动</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="title">活动标题</label>
+                <input id="title" value="七夕浪漫神秘大奖">
+              </div>
+              <div class="field full">
+                <label class="required" for="desc">活动说明</label>
+                <input id="desc" value="连续签到积累浪漫值，解锁七夕神秘大奖">
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
+              <h2>皮肤选择配置</h2>
+              <span class="note">选择活动前端使用的主题皮肤</span>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label class="required" for="skin-select">皮肤选择</label>
+                <select id="skin-select">
+                  <option>夏日神秘大奖</option>
+                  <option selected>七夕神秘大奖</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
+              <h2>浪漫值签到体系</h2>
+              <button class="btn soft" type="button">新增天数</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>天数</th>
+                    <th class="num">浪漫值</th>
+                    <th>默认状态</th>
+                    <th>阶段文案</th>
+                    <th>视觉阶段</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><input class="table-input" value="Day1"></td><td><input class="table-input num" value="10%"></td><td><select class="table-select"><option selected>已签到</option><option>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="初遇浪漫"></td><td><input class="table-input" value="月光初遇"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day2"></td><td><input class="table-input num" value="20%"></td><td><select class="table-select"><option selected>已签到</option><option>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="心动升温"></td><td><input class="table-input" value="月光初遇"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day3"></td><td><input class="table-input num" value="30%"></td><td><select class="table-select"><option selected>已签到</option><option>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="甜蜜增加"></td><td><input class="table-input" value="心动花园"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day4"></td><td><input class="table-input num" value="50%"></td><td><select class="table-select"><option>已签到</option><option selected>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="感情升温"></td><td><input class="table-input" value="银河鹊桥"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day5"></td><td><input class="table-input num" value="75%"></td><td><select class="table-select"><option>已签到</option><option>今日签到</option><option selected>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="浪漫爆发"></td><td><input class="table-input" value="银河鹊桥"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day6"></td><td><input class="table-input num" value="90%"></td><td><select class="table-select"><option>已签到</option><option>今日签到</option><option selected>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="最后冲刺"></td><td><input class="table-input" value="星河狂欢"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day7"></td><td><input class="table-input num" value="100%"></td><td><select class="table-select"><option>已签到</option><option>今日签到</option><option>未签到</option><option selected>开奖日</option></select></td><td><input class="table-input" value="开启七夕大奖"></td><td><input class="table-input" value="七夕浪漫宝箱"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
+              <h2>开奖与奖励配置</h2>
+              <span class="note">隐藏真实奖励金额，开奖动画后生成奖励</span>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label class="required" for="draw-date">开奖日</label>
+                <input id="draw-date" value="2026-08-20">
+              </div>
+              <div class="field">
+                <label class="required" for="draw-time">开奖时间</label>
+                <input id="draw-time" value="00:00:00">
+              </div>
+              <div class="field">
+                <label class="required" for="claim-end">领取截止时间</label>
+                <input id="claim-end" value="2026-08-20 23:59:59">
+              </div>
+              <div class="field">
+                <label class="required" for="hide-amount">奖励金额前端隐藏</label>
+                <select id="hide-amount">
+                  <option selected>开启</option>
+                  <option>关闭</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="roll-num">滚动展示数字</label>
+                <input id="roll-num" value="520, 1314, 1888, 5200, 8888">
+              </div>
+              <div class="field">
+                <label class="required" for="reward-type">奖励类型</label>
+                <select id="reward-type">
+                  <option selected>现金彩金</option>
+                  <option>实物</option>
+                  <option>混合</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="reward-min">最小奖励金额</label>
+                <input id="reward-min" type="number" value="520">
+              </div>
+              <div class="field">
+                <label class="required" for="reward-max">最大奖励金额</label>
+                <input id="reward-max" type="number" value="8888">
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
+              <h2>其他设置</h2>
+              <span class="note">归属、时间、通知与备注</span>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label class="required" for="belong">归属</label>
+                <select id="belong">
+                  <option selected>全站</option>
+                  <option>指定站点</option>
+                  <option>指定代理线</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="tag">标签</label>
+                <select id="tag">
+                  <option selected>七夕活动</option>
+                  <option>签到</option>
+                  <option>充值转化</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="message-template">站内信模板</label>
+                <select id="message-template">
+                  <option selected>七夕活动通知</option>
+                  <option>七夕开奖提醒</option>
+                  <option>七夕奖励领取提醒</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="send-start-time">开始发送时间</label>
+                <input id="send-start-time" value="2026-08-14 00:00:00">
+              </div>
+              <div class="field">
+                <label class="required" for="hour-count">每小时发送次数</label>
+                <div class="inline">
+                  <input id="hour-count" type="number" min="0" max="999999" step="1" value="0">
+                  <span class="note">纯数字，整数 0~999999</span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="required">前端展示</label>
+                <div class="switches">
+                  <label><input type="radio" name="show" checked>展示</label>
+                  <label><input type="radio" name="show">不展示</label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="required" for="start-time">开始时间</label>
+                <input id="start-time" value="2026-08-14 00:00:00">
+              </div>
+              <div class="field">
+                <label class="required" for="end-time">结束时间</label>
+                <input id="end-time" value="2026-08-20 23:59:59">
+              </div>
+              <div class="field full">
+                <label for="remark">备注</label>
+                <textarea id="remark">七夕主题活动，连续签到积累浪漫值；充值任意金额可每日额外增加+15%浪漫值；开奖前隐藏真实奖励金额。</textarea>
+              </div>
+            </div>
+          </section>
+
+          <div class="actions">
+            <button class="btn" type="button">取消</button>
+            <button class="btn primary" type="button">确定</button>
+          </div>
+        </div>
+
+        <aside class="preview section">
+          <div class="section-head">
+            <h2>前端设计稿预览</h2>
+            <span class="note">待领取七夕节.jpg</span>
+          </div>
+          <div style="padding:16px">
+            <img src="qixi-frontend-design.jpg" alt="七夕活动前端设计稿">
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest(".delete-row");
+      if (!button) return;
+      const row = button.closest("tr");
+      if (row) row.remove();
+    });
+  </script>
+</body>
+</html>
