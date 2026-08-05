@@ -98,10 +98,7 @@
     }
 
     .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
-      gap: 16px;
-      align-items: start;
+      display: block;
     }
 
     .section {
@@ -268,19 +265,6 @@
       padding: 6px 10px;
     }
 
-    .preview {
-      position: sticky;
-      top: 16px;
-    }
-
-    .preview img {
-      display: block;
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: #000;
-    }
-
     .actions {
       position: sticky;
       bottom: 0;
@@ -291,11 +275,6 @@
       border-top: 1px solid var(--line);
       background: rgba(255,255,255,.94);
       backdrop-filter: blur(8px);
-    }
-
-    @media (max-width: 1180px) {
-      .layout { grid-template-columns: 1fr; }
-      .preview { position: static; }
     }
 
     @media (max-width: 760px) {
@@ -494,15 +473,6 @@
           </div>
         </div>
 
-        <aside class="preview section">
-          <div class="section-head">
-            <h2>前端设计稿预览</h2>
-            <span class="note">待领取七夕节.jpg</span>
-          </div>
-          <div style="padding:16px">
-            <img src="qixi-frontend-design.jpg" alt="七夕活动前端设计稿">
-          </div>
-        </aside>
       </div>
     </main>
   </div>
