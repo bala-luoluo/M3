@@ -389,6 +389,37 @@
 
           <section class="section">
             <div class="section-head">
+              <h2>充值加速配置</h2>
+              <span class="note">充值后额外增加浪漫值</span>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label class="required" for="recharge-method">充值方式</label>
+                <select id="recharge-method">
+                  <option selected>全部充值方式</option>
+                  <option>线上充值</option>
+                  <option>线下充值</option>
+                  <option>后台补单</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="recharge-amount">充值金额</label>
+                <select id="recharge-amount">
+                  <option selected>不限制</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="required" for="boost-value">加速值配置</label>
+                <div class="inline">
+                  <input id="boost-value" type="number" min="0" max="100" step="1" value="15">
+                  <span class="note">%</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
               <h2>开奖与奖励配置</h2>
               <span class="note">配置开奖日期与时间</span>
             </div>
