@@ -392,20 +392,17 @@
                   <tr>
                     <th>天数</th>
                     <th class="num">浪漫值</th>
-                    <th>默认状态</th>
-                    <th>阶段文案</th>
-                    <th>视觉阶段</th>
                     <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><input class="table-input" value="Day1"></td><td><input class="table-input num" value="10%"></td><td><select class="table-select"><option selected>已签到</option><option>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="初遇浪漫"></td><td><input class="table-input" value="月光初遇"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
-                  <tr><td><input class="table-input" value="Day2"></td><td><input class="table-input num" value="20%"></td><td><select class="table-select"><option selected>已签到</option><option>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="心动升温"></td><td><input class="table-input" value="月光初遇"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
-                  <tr><td><input class="table-input" value="Day3"></td><td><input class="table-input num" value="30%"></td><td><select class="table-select"><option selected>已签到</option><option>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="甜蜜增加"></td><td><input class="table-input" value="心动花园"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
-                  <tr><td><input class="table-input" value="Day4"></td><td><input class="table-input num" value="50%"></td><td><select class="table-select"><option>已签到</option><option selected>今日签到</option><option>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="感情升温"></td><td><input class="table-input" value="银河鹊桥"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
-                  <tr><td><input class="table-input" value="Day5"></td><td><input class="table-input num" value="75%"></td><td><select class="table-select"><option>已签到</option><option>今日签到</option><option selected>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="浪漫爆发"></td><td><input class="table-input" value="银河鹊桥"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
-                  <tr><td><input class="table-input" value="Day6"></td><td><input class="table-input num" value="90%"></td><td><select class="table-select"><option>已签到</option><option>今日签到</option><option selected>未签到</option><option>开奖日</option></select></td><td><input class="table-input" value="最后冲刺"></td><td><input class="table-input" value="星河狂欢"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
-                  <tr><td><input class="table-input" value="Day7"></td><td><input class="table-input num" value="100%"></td><td><select class="table-select"><option>已签到</option><option>今日签到</option><option>未签到</option><option selected>开奖日</option></select></td><td><input class="table-input" value="开启七夕大奖"></td><td><input class="table-input" value="七夕浪漫宝箱"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day1"></td><td><input class="table-input num" value="10%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day2"></td><td><input class="table-input num" value="20%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day3"></td><td><input class="table-input num" value="30%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day4"></td><td><input class="table-input num" value="50%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day5"></td><td><input class="table-input num" value="75%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day6"></td><td><input class="table-input num" value="90%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
+                  <tr><td><input class="table-input" value="Day7"></td><td><input class="table-input num" value="100%"></td><td><button class="btn danger delete-row" type="button">删除</button></td></tr>
                 </tbody>
               </table>
             </div>
@@ -414,7 +411,7 @@
           <section class="section">
             <div class="section-head">
               <h2>开奖与奖励配置</h2>
-              <span class="note">隐藏真实奖励金额，开奖动画后生成奖励</span>
+              <span class="note">配置开奖日期与时间</span>
             </div>
             <div class="form-grid">
               <div class="field">
@@ -424,37 +421,6 @@
               <div class="field">
                 <label class="required" for="draw-time">开奖时间</label>
                 <input id="draw-time" value="00:00:00">
-              </div>
-              <div class="field">
-                <label class="required" for="claim-end">领取截止时间</label>
-                <input id="claim-end" value="2026-08-20 23:59:59">
-              </div>
-              <div class="field">
-                <label class="required" for="hide-amount">奖励金额前端隐藏</label>
-                <select id="hide-amount">
-                  <option selected>开启</option>
-                  <option>关闭</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="required" for="roll-num">滚动展示数字</label>
-                <input id="roll-num" value="520, 1314, 1888, 5200, 8888">
-              </div>
-              <div class="field">
-                <label class="required" for="reward-type">奖励类型</label>
-                <select id="reward-type">
-                  <option selected>现金彩金</option>
-                  <option>实物</option>
-                  <option>混合</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="required" for="reward-min">最小奖励金额</label>
-                <input id="reward-min" type="number" value="520">
-              </div>
-              <div class="field">
-                <label class="required" for="reward-max">最大奖励金额</label>
-                <input id="reward-max" type="number" value="8888">
               </div>
             </div>
           </section>
