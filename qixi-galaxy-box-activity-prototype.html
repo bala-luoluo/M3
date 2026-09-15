@@ -144,6 +144,10 @@
       gap: 10px;
     }
 
+    .field.long-label {
+      grid-template-columns: 168px minmax(0, 1fr);
+    }
+
     .field.full { grid-column: 1 / -1; }
 
     label {
@@ -355,6 +359,7 @@
                 <select id="skin-select">
                   <option>夏日神秘大奖</option>
                   <option selected>七夕神秘大奖</option>
+                  <option>中秋活动</option>
                 </select>
               </div>
             </div>
@@ -407,6 +412,22 @@
                 <label class="required" for="boost-value">加速值配置</label>
                 <div class="inline">
                   <input id="boost-value" type="number" min="0" max="100" step="1" value="15">
+                  <span class="note">%</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
+              <h2>借呗加速配置</h2>
+              <span class="note">完成借呗后额外增加浪漫值</span>
+            </div>
+            <div class="form-grid">
+              <div class="field long-label">
+                <label class="required" for="loan-boost-value">完成借呗加速值配置</label>
+                <div class="inline">
+                  <input id="loan-boost-value" type="number" min="0" max="100" step="1" value="15">
                   <span class="note">%</span>
                 </div>
               </div>
